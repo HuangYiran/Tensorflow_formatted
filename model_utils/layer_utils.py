@@ -11,7 +11,7 @@ basic layer type, include:
 visual utils are not jet used 
 """
 
-def conv2d(input_, output_dim, stride_h, stride_w, stride_c = 1, stddev = 0.02, padding = 'SAME', use_cudnn_on_gpu = None, data_format = None, name = None):
+def conv2d(input_, output_dim, stride_h, stride_w, stride_c = 1, stddev = 0.02, padding = 'SAME', use_cudnn_on_gpu = None, data_format = None, name = None, with_w = False):
     """
     becaause it's 2d convolution: output_dim is the number of the filter
     ??should i use params image_h, image_w. In fact i can get it from input through input.get_size
@@ -27,9 +27,12 @@ def conv2d(input_, output_dim, stride_h, stride_w, stride_c = 1, stddev = 0.02, 
                 use_cudnn_on_gpu = use_cudnn_on_gpu,
                 data_format = data_fromat)
         conv = tf.reshape(tf.nn.biases_add(conv, biases), conv.get_shape())
-        return conv
+        if with_w:
+            return conv, w, biases
+        else:
+            return conv
 
-def conv2d_transpose(input_, output_shape, stride_h, stride_w, stride_c = 1, stddev = 0.02, padding = 'SAME', data_format = 'NHWC', name = None):
+def conv2d_transpose(input_, output_shape, stride_h, stride_w, stride_c = 1, stddev = 0.02, padding = 'SAME', data_format = 'NHWC', name = None, with_w = False):
     """
     to get a large image from a small image through the filter.
     but it's not the averse of the conv stridly 
@@ -48,18 +51,24 @@ def conv2d_transpose(input_, output_shape, stride_h, stride_w, stride_c = 1, std
                 padding = padding,
                 data_format = data_format)
         conv_transpose = tf.reshape(tf.nn.biases_add(conv_transpose, biases), conv_transpose.get_shape())
-        return conv_transpose
+        if with_w:
+            return conv_transpose, w, biases
+        else:
+            return conv_transpose
 
-def linear(input_, output_dim, stddev = 0.02, name = None):
+def linear(input_, output_dim, stddev = 0.02, name = None, with_w = False):
     input_dim = input_.get_shape()[-1]
     with tf.variables_scope(name or "linear"):
         w = tf.get_variable('w', [input_dim, output_dim],
                 initializer = tf.truncated_normal_initializer(stddev = staddev))
         biases = tf.get_variable('b', [output_dim],
                 initializer = tf.constant_initializer(0.0))
-        return tf.matmul(input_, w) + biases
+        if with_w:
+            return tf.matmul(input_, w) + biases, w, biases
+        else:
+            return tf.matmul(input_, w) + biases
 
-def nonlinear(input_, output_dim, stddev = 0.02, activation_function = None, name = None):
+def nonlinear(input_, output_dim, stddev = 0.02, activation_function = tf.nn.relu, name = None, with_w = False):
     """
     activation_function is a function parameter. so i can use self-defined function here
     """
@@ -70,7 +79,7 @@ def nonlinear(input_, output_dim, stddev = 0.02, activation_function = None, nam
         biases = tf.get_variable('b', [output_dim],
                 initializer = tf.constant_initializer(0.02))
         sum = tf.matmul(input_, w) + biases
-        if activation_function:
-            return tf.sigmoid(sum)
+        if with_w:
+            return activation_function(sum), w, biases
         else:
             return activation_function(sum)
