@@ -75,7 +75,7 @@ def nonlinear(input_, output_dim, stddev = 0.02, activation_function = tf.nn.rel
     input_dim = input_.get_shape()[-1]
     with tf.variable_scope(name or "nonlinear"):
         w = tf.get_variable('w', [input_dim, output_dim],
-                initializer = tf.truncated_normal_initiallizer(stddev = stddev))
+                initializer = tf.truncated_normal_initializer(stddev = stddev))
         biases = tf.get_variable('b', [output_dim],
                 initializer = tf.constant_initializer(0.02))
         sum = tf.matmul(input_, w) + biases

@@ -6,11 +6,11 @@ import os
 import gzip
 import logging
 
-DATA_DIR = "../../data/Tensorflow_formatted"
+DATA_DIR = "../data/Tensorflow_formatted"
 logging.basicConfig(filename = 'logger_data_util.log', level = logging.INFO)
 
 def mnist_download():
-    MNIST_DIR = DATA_DIR + "/MNIST"
+    MNIST_DIR = DATA_DIR + "/mnist"
     train_images_path = MNIST_DIR + "/train-images-idx3-ubyte.gz"
     train_labels_path = MNIST_DIR + "/train-labels-idx1-ubyte.gz"
     test_images_path = MNIST_DIR + "/t10k-images-idx3-ubyte.gz"
@@ -31,4 +31,3 @@ def prepare_data():
     train_images_path, train_labels_path, test_images_path, test_labels_path = mnist_download()
     return (train_images_path, train_labels_path, test_images_path, test_labels_path)
 
-prepare_data()
