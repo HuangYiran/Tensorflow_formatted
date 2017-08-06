@@ -1,0 +1,6 @@
+![mlp-graph](https://raw.githubusercontent.com/HuangYiran/Tensorflow_formatted/master/models/mlp_dropout_mnist/mlp-graph.png)
+![mlp-scala](https://raw.githubusercontent.com/HuangYiran/Tensorflow_formatted/master/models/mlp_dropout_mnist/mlp-scala.png)
+![mlp-scala2](https://raw.githubusercontent.com/HuangYiran/Tensorflow_formatted/master/models/mlp_dropout_mnist/mlp-scala2.png)
+![mlp-distribution](https://raw.githubusercontent.com/HuangYiran/Tensorflow_formatted/master/models/mlp_dropout_mnist/mlp-distribution.png)
+![mlp-histogram1](https://raw.githubusercontent.com/HuangYiran/Tensorflow_formatted/master/models/mlp_dropout_mnist/mlp-histogram2.png)
+![mlp-histogram2](https://raw.githubusercontent.com/HuangYiran/Tensorflow_formatted/master/models/mlp_dropout_mnist/mlp-histogram2.png)
