@@ -25,7 +25,7 @@ class mlp_dropout_mnist(object):
     """
     def __init__(self, sess,l1_num,
             l2_num, 
-            train_dir, test_dir, checkpoint_dir,
+            train_dir, test_dir,
             batch_size,
             stddev = 0.02,
             l1_act = None,
@@ -47,7 +47,6 @@ class mlp_dropout_mnist(object):
         self.stddev = 0.02
         self.train_dir = train_dir
         self.test_dir = test_dir
-        self.checkpoint_dir = checkpoint_dir
 
         # load data
         #self.X, self.Y = load_mnist(train_dir)

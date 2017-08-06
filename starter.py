@@ -28,7 +28,7 @@ test_dir = os.path.dirname(test_images_path)
 
 with tf.Session() as sess:
     model = mlp_dropout_mnist(sess, FLAGS.l1_num, FLAGS.l2_num,
-            train_dir = train_dir, test_dir = test_dir, checkpoint_dir = FLAGS.checkpoint_dir,
+            train_dir = train_dir, test_dir = test_dir, 
             batch_size = FLAGS.batch_size)
     ckpt = tf.train.get_checkpoint_state(FLAGS.checkpoint_dir)
     if ckpt and tf.train.checkpoint_exists(ckpt.model_checkpoint_path):
