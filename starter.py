@@ -5,13 +5,13 @@ import sys
 
 sys.path.append('./models')
 sys.path.append('./data_utils')
-from mlp_dropout_mnist import *
+from cnn_bn_maxpooling_mnist import *
 from download_data import *
 
 
 tf.app.flags.DEFINE_string("data", "mnist", "the name of the data")
 tf.app.flags.DEFINE_string("model", "mlp_dropout_mnist", "the name of the model")
-tf.app.flags.DEFINE_string("checkpoint_dir", "./models/mlp_dropout_mnist/", "the path of the checkpoint")
+tf.app.flags.DEFINE_string("checkpoint_dir", "./models/cnn_bn_maxpooling_mnist/", "the path of the checkpoint")
 tf.app.flags.DEFINE_string("train_dir", None, "the path of the training data")
 tf.app.flags.DEFINE_string("test_dir", None, "the path of the testing data")
 tf.app.flags.DEFINE_integer("checkpoint_steps", 100, "save the chekcpoint in $chekcpoint_steps steps")
@@ -27,9 +27,10 @@ train_dir = os.path.dirname(train_images_path)
 test_dir = os.path.dirname(test_images_path)
 
 with tf.Session() as sess:
-    model = mlp_dropout_mnist(sess, FLAGS.l1_num, FLAGS.l2_num,
-            train_dir = train_dir, test_dir = test_dir, 
-            batch_size = FLAGS.batch_size)
+   # model = mlp_dropout_mnist(sess, FLAGS.l1_num, FLAGS.l2_num,
+   #         train_dir = train_dir, test_dir = test_dir, 
+   #         batch_size = FLAGS.batch_size)
+    model = cnn_bn_maxpooling_mnist(sess)
     ckpt = tf.train.get_checkpoint_state(FLAGS.checkpoint_dir)
     if ckpt and tf.train.checkpoint_exists(ckpt.model_checkpoint_path):
         print("Reading model parameters from %s" %(ckpt.model_checkpoint_path))
@@ -43,7 +44,7 @@ with tf.Session() as sess:
         if i % 100 == 0:
             model.evaluate(sess, input_data, input_label)
         if i % FLAGS.checkpoint_steps == 0:
-            model.saver.save(sess, FLAGS.checkpoint_dir + '/model.ckpt', global_step = model.counter)
+            model.saver.save(sess, FLAGS.checkpoint_dir + '/model.ckpt', global_step = model.global_counter)
 
 """
 def starter():
