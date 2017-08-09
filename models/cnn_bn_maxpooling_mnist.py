@@ -48,7 +48,7 @@ class cnn_bn_maxpooling_mnist(object):
         self.model()
 
         # set train_writer
-        self.train_writer = tf.summary.FileWriter('./log/train', sess.graph)
+        self.train_writer = tf.summary.FileWriter('./log/cnn/train', sess.graph)
 
         # set saver
         self.saver = tf.train.Saver(tf.global_variables())

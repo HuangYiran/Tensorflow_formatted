@@ -113,3 +113,7 @@ INFO:root:mnist file existed jet, return the path of the file
 INFO:root:mnist file existed jet, return the path of the file
 INFO:root:mnist file existed jet, return the path of the file
 INFO:root:mnist file existed jet, return the path of the file
+INFO:root:mnist file existed jet, return the path of the file
+INFO:tensorflow:Restoring parameters from ./models/cnn_bn_maxpooling_mnist/model.ckpt-1
+INFO:root:mnist file existed jet, return the path of the file
+INFO:tensorflow:Restoring parameters from ./models/cnn_bn_maxpooling_mnist/model.ckpt-901
