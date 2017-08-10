@@ -13,7 +13,7 @@ visual utils are not jet used
 
 def conv2d(input_, image_h, image_w, output_dim, stride_h, stride_w, stride_c = 1, stddev = 0.02, padding = 'SAME', use_cudnn_on_gpu = None, data_format = None, name = None, with_w = False):
     """
-    becaause it's 2d convolution: output_dim is the number of the filter
+    becaause it's 2d convolution and in_channel = the number of channels from last layer: output_dim is the number of the filter
     w for fliter [image_h, image_w, in_channel, out_channel]
     in_channel is the same as image_c
     """
